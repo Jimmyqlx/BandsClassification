@@ -70,7 +70,7 @@ preprocessor = ColumnTransformer(
 # full prediction pipeline.
 #GradientBoosting
 clf = Pipeline(steps=[('preprocessor', preprocessor),
-('selector', SelectKBest(mutual_info_classif, k=5)),
+('selector', SelectKBest(f_classif, k=30)),
                       ('classifier', GradientBoostingClassifier(random_state=0,learning_rate=0.05,max_depth=4))])
 l=cross_val_score(clf, X, y, cv=10)
 print(np.mean(l))
@@ -79,7 +79,7 @@ print(l)
 
 #Logistic Regression
 clf = Pipeline(steps=[('preprocessor', preprocessor),
-('selector', SelectKBest(mutual_info_classif, k=5)),
+('selector', SelectKBest(f_classif, k=30)),
                       ('classifier', LogisticRegression(random_state=0,C=0.001,max_iter=1000))])
 l=cross_val_score(clf, X, y, cv=10)
 print(np.mean(l))
@@ -87,7 +87,7 @@ print(l)
 
 #Randomforest
 clf = Pipeline(steps=[('preprocessor', preprocessor),
-('selector', SelectKBest(mutual_info_classif, k=5)),
+('selector', SelectKBest(f_classif, k=30)),
                       ('classifier', RandomForestClassifier(random_state=0))])
 l=cross_val_score(clf, X, y, cv=10)
 print(np.mean(l))
@@ -95,7 +95,7 @@ print(l)
 
 #DecisionTree
 clf = Pipeline(steps=[('preprocessor', preprocessor),
-('selector', SelectKBest(mutual_info_classif, k=5)),
+('selector', SelectKBest(f_classif, k=30)),
                       ('classifier', DecisionTreeClassifier(random_state=0,max_depth=4))])
 l=cross_val_score(clf, X, y, cv=10)
 print(np.mean(l))
